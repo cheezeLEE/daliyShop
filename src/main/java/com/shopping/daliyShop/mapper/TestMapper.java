@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.context.annotation.ComponentScan;
 
 @Mapper
-@ComponentScan
 public interface TestMapper {
     TestModel selectByIdTest(String id);
 }
