@@ -49,16 +49,16 @@
   form 만들기
   <form th:action="@{/test/join}" th:object="${testModel}" method="post">
     <div>
-      <label th:for="usr_id">아이디 : </label>
-      <input type="text" th:field="*{usr_id}" />
+      <label th:for="usrId">아이디 : </label>
+      <input type="text" th:field="*{usrId}" />
     </div>
     <div>
-      <label th:for="usr_id">비밀번호 : </label>
-      <input type="password" th:field="*{usr_pw}" />
+      <label th:for="usrPw">비밀번호 : </label>
+      <input type="password" th:field="*{usrPw}" />
     </div>
     <div>
-      <label th:for="usr_id">이름 : </label>
-      <input type="text" th:field="*{usr_name}" />
+      <label th:for="usrName">이름 : </label>
+      <input type="text" th:field="*{usrName}" />
     </div>
     <button type="submit" id="joinBtn">가입</button>
   </form>
