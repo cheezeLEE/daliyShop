@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class TestModel {
-    private String id;
-    private String pw;
-    private String name;
+    private int usrNo;
+    private String usrId;
+    private String usrPw;
+    private String usrName;
 }
