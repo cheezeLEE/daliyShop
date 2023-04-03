@@ -6,6 +6,11 @@
     </select>
 
     <select id="selectByNo" resultType="TestModel">
-        SELECT * FROM tbl_test where usr_no = #{usr_no}
+        SELECT * FROM tbl_test where usr_no = #{usrNo}
     </select>
+
+    <insert id="insert" parameterType="TestModel">
+        INSERT INTO tbl_test(usr_id, usr_pw, usr_name)
+        VALUES(#{usrId}, #{usrPw}, #{usrName})
+    </insert>
 </mapper>

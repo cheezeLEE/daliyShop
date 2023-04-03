@@ -9,11 +9,25 @@
 <body>
   <div>공통코드를 테스트하는 테스트 페이지 입니다.</div>
   <br/>
-  <div>파일 업로드 / 다운로드</div>
   <div></div>
   <div>DB Insert</div>
-<form th:action="@{/test/insert}">
-
+<form th:action="@{/test/insert}" th:object="${testModel}" method="post">
+  <div>
+    <label th:for="usrId" th:text="아이디"></label>
+    <input type="text" id="usrId" th:field="*{usrId}">
+  </div>
+  <div>
+    <label th:for="usrPw" th:text="비밀번호"></label>
+    <input type="password" id="usrPw" th:field="*{usrPw}">
+  </div>
+  <div>
+    <label th:for="usrName" th:text="이름"></label>
+    <input type="text" id="usrName" th:field="*{usrName}">
+  </div>
+  <div>
+    <button type="submit" th:text="버튼"></button>
+  </div>
 </form>
+
 </body>
 </html>

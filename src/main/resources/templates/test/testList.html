@@ -7,11 +7,21 @@
   <title>test</title>
 </head>
 <body>
-<ul>
-  <li>[[${testModel.usr_id}]]</li>
-  <li>[[${testModel.usr_pw}]]</li>
-  <li>[[${testModel.usr_name}]]</li>
-</ul>
+<table border="1">
+  <tr>
+    <th>usrNo</th>
+    <th>usrId</th>
+    <th>usrPw</th>
+    <th>usrName</th>
+  </tr>
+  <tr th:each="data : ${testList}">
+    <td th:text="${data.usrNo}"></td>
+    <td th:text="${data.usrId}"></td>
+    <td th:text="${data.usrPw}"></td>
+    <td th:text="${data.usrName}"></td>
+  </tr>
+</table>
+<a th:href="@{/test}">test페이지로 가기</a>
 <a href="/thymeleafTest">ThymeleafTest 페이지로 가기</a>
 </body>
 </html>

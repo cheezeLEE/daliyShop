@@ -1,16 +1,27 @@
 package com.shopping.daliyShop.controller;
 
 import com.shopping.daliyShop.model.TestModel;
+import com.shopping.daliyShop.service.TestService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 public class TestController {
+
+    private final TestService testService;
+
+    @Autowired
+    public TestController(TestService testService) {
+        this.testService = testService;
+    }
 
     @GetMapping("/test")
     public String test(Model model){
@@ -19,9 +30,11 @@ public class TestController {
     }
 
     @PostMapping("/test/insert")
-    public String testInsert(@ModelAttribute TestModel testModel){
+    public String testInsert(@ModelAttribute TestModel testModel, Model model){
 
-
+        testService.insert(testModel);
+        List<TestModel> testList = testService.findAll();
+        model.addAttribute("testList", testList);
 
         return "test/testList";
     }
@@ -48,4 +61,5 @@ public class TestController {
         model.addAttribute("testModel", testModel);
         return "test/testList";
     }
+
 }

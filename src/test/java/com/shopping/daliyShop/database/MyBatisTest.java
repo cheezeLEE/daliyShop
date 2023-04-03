@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class MyBatisTest {
@@ -19,13 +21,21 @@ public class MyBatisTest {
     @Test
     void selectTest(){
         TestModel testModel = testService.selectByNo(1);
-        System.out.println(testModel.toString());
-
+        Assertions.assertThat(testModel.getUsrId()).isEqualTo("id");
     }
 
     @Test
     void findAllTest(){
-        TestModel all = testService.findAll();
-        Assertions.assertThat(all.getUsrNo()).isEqualTo(1);
+        List<TestModel> all = testService.findAll();
+        Assertions.assertThat(all.get(1).getUsrId()).isEqualTo("testId");
+    }
+
+    @Test
+    void insertTest(){
+        TestModel testModel = new TestModel();
+        testModel.setUsrId("testId");
+        testModel.setUsrPw("testPw");
+        testModel.setUsrName("testUsrName");
+        testService.insert(testModel);
     }
 }
