@@ -10,4 +10,6 @@ public interface TestMapper {
     TestModel selectByNo(int usrNo);
     List<TestModel> findAll();
     int insert(TestModel testModel);
+
+    TestModel selectById(String usrId);
 }

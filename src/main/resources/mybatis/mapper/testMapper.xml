@@ -13,4 +13,8 @@
         INSERT INTO tbl_test(usr_id, usr_pw, usr_name)
         VALUES(#{usrId}, #{usrPw}, #{usrName})
     </insert>
+
+    <select id="selectById" resultType="TestModel">
+        SELECT * FROM tbl_test WHERE usr_id = #{usrId}
+    </select>
 </mapper>

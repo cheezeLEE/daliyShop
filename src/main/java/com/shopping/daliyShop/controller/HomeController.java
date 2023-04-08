@@ -78,4 +78,10 @@ public class HomeController {
         System.out.println("HomeController.wishlist");
         return "wishlist";
     }
+
+    @RequestMapping(value = "/loginTest")
+    public String loginTest(Model model) throws Exception{
+        System.out.println("HomeController.loginTest");
+        return "loginTest";
+    }
 }

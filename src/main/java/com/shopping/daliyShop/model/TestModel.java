@@ -8,4 +8,5 @@ public class TestModel {
     private String usrId;
     private String usrPw;
     private String usrName;
+    private String roles;
 }

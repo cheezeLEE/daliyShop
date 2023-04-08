@@ -26,6 +26,7 @@ function defineSequence(imagesLoaded, Hammer) {
    * @returns {Object} self - Properties and methods available to this instance
    */
   var Sequence = (function (element, options) {
+    if(element == null) return;
 
     var instanceId = element.getAttribute("data-seq-enabled");
 
