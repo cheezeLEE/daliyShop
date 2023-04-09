@@ -3,13 +3,19 @@ package com.shopping.daliyShop.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
 
+    /* TODO /를 추가로 3번 더 호출하는 이유 */
     @RequestMapping(value = "/index")
-    public String home(Model model) throws Exception{
+    public String home(HttpServletRequest request, Model model, @RequestParam(value = "login", required = false) String login) throws Exception{
         System.out.println("HomeController.home");
+        /* Security에서 권한이 없으면 login=false를 넘겨줌 */
+        model.addAttribute("login", login);
         return "index";
     }
 

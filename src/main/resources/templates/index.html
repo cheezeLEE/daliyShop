@@ -1521,6 +1521,14 @@
   <!-- footer -->
   <th:block th:replace="fragments/footer :: footerFragment"></th:block>
   <!-- / footer -->
+<script th:inline="javascript">
+  $(function(){
+      let login = [[${login}]];
+      if(login == "false"){
+          $("#login-modal").modal();
+      }
+  })
 
+</script>
 </body>
 </html>
