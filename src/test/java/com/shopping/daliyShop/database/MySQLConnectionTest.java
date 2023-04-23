@@ -7,9 +7,9 @@ import java.sql.DriverManager;
 
 public class MySQLConnectionTest {
     // MySQL Connector 의 클래스. DB 연결 드라이버 정의
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DRIVER = "net.sf.log4jdbc.sql.jdbcapi.DriverSpy";
     // DB 경로
-    private static final String URL = "jdbc:mysql://localhost:3306/daliyshop?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false";
+    private static final String URL = "jdbc:log4jdbc:mysql://localhost:3306/daliyshop?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul";
     private static final String USER = "root";
     private static final String PASSWORD = "test";
 

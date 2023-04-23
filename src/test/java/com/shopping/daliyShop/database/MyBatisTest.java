@@ -31,7 +31,7 @@ public class MyBatisTest {
     @Test
     void findAllTest(){
         List<TestModel> all = testService.findAll();
-        Assertions.assertThat(all.get(1).getUsrId()).isEqualTo("testId");
+        Assertions.assertThat(all.get(1).getUsrId()).isEqualTo("user");
     }
 
     @Test
