@@ -72,4 +72,10 @@ public class TestController {
             return "실패";
         }
     }
+
+    @RequestMapping(value = "/loginTest")
+    public String loginTest(Model model) throws Exception{
+        System.out.println("HomeController.loginTest");
+        return "loginTest";
+    }
 }
