@@ -11,4 +11,10 @@ public class CommonController {
         System.out.println("HomeController.error404");
         return "404";
     }
+
+    @RequestMapping(value = "/loginTest")
+    public String loginTest(Model model) throws Exception{
+        System.out.println("HomeController.loginTest");
+        return "loginTest";
+    }
 }
