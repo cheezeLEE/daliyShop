@@ -40,10 +40,10 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li><a th:href="@{/account}">내 정보변경</a></li>
-                  <li class="hidden-xs"><a href="wishlist.html">찜</a></li>
-                  <li class="hidden-xs"><a href="cart.html">장바구니</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">구매하기</a></li>
+                  <li><a th:href="@{/my-info}">내 정보변경</a></li>
+                  <li class="hidden-xs"><a th:href="@{/wishlist}">찜</a></li>
+                  <li class="hidden-xs"><a th:href="@{/cart}">장바구니</a></li>
+                  <li class="hidden-xs"><a th:href="@{/checkout}">구매하기</a></li>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">로그인</a></li>
                 </ul>
               </div>
@@ -63,7 +63,7 @@
               <!-- logo  -->
               <div class="aa-logo">
                 <!-- Text based logo -->
-                <a href="index.html">
+                <a th:href="@{/index}">
                   <span class="fa fa-shopping-cart"></span>
                   <p><strong>Baruz</strong> <span>Your Shopping Partner</span></p>
                 </a>

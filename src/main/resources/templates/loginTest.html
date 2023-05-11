@@ -18,21 +18,27 @@
 <div th:replace="fragments/menu :: menu"></div>
 <!-- /menu -->
 
-<section>
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h4>Login or Register</h4>
-  <form class="aa-login-form" action="/loginProc" method="post">
-    <label for="usrId">Username or Email address<span>*</span></label>
-    <input type="text" id="usrId" name="usrId" placeholder="Username or email">
-    <label for="usrPw">Password<span>*</span></label>
-    <input type="password" id="usrPw" name="usrPw" placeholder="Password">
-    <button class="aa-browse-btn" type="submit">Login</button>
-    <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-    <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-    <div data-seq class="aa-register-now" >
-      Don't have an account?<a href="account.html">Register now!</a>
+<section id="bb-myaccount">
+  <div class="container">
+    <div class="row" style="float: none; margin: auto;">
+      <div class="col-md-5" style="float: none; margin: auto;">
+        <div class="bb-myaccount-area">
+          <div class="bb-myaccount-register">
+            <h4>Register</h4>
+            <form action="" class="bb-login-form">
+              <label for="userId">ID<span>*</span></label>
+              <input type="text" id="userId" name="userId" placeholder="아이디">
+              <label for="userPw">Password<span>*</span></label>
+              <input type="password" id="userPw" name="userPw" placeholder="비밀번호">
+
+              <button type="submit" class="aa-browse-btn" style="width: 100%">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
+  </div>
 </section>
 
 <!-- footer -->

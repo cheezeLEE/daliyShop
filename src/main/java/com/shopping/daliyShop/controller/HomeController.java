@@ -90,4 +90,10 @@ public class HomeController {
         System.out.println("HomeController.loginTest");
         return "loginTest";
     }
+
+    @RequestMapping(value = "/my-info")
+    public String myInfo(Model model) throws Exception{
+        System.out.println("HomeController.my-info");
+        return "my-info";
+    }
 }

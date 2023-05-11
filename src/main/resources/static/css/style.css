@@ -2573,6 +2573,31 @@ img {
  MY ACCOUNT  PAGE
 ====================*/
 
+#bb-myaccount {
+  display: inline;
+  width: 100%;
+}
+#bb-myaccount .bb-myaccount-area {
+  display: inline;
+  padding: 100px 0;
+  width: 100%;
+}
+#bb-myaccount .bb-myaccount-area h4 {
+  border-bottom: 1px solid #ccc;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+}
+
+#bb-myaccount .bb-myaccount-area .bb-myaccount-register {
+  display: inline;
+  width: 100%;
+}
+
+/*---- Login form ----*/
+
+/*---- account form ----*/
 #aa-myaccount {
   display: inline;
   float: left;
@@ -2602,8 +2627,6 @@ img {
   width: 100%;
 }
 
-/*---- Login form ----*/
-
 .aa-login-form input[type="text"],
 .aa-login-form input[type="password"] {
   border: 1px solid #ccc;
@@ -2613,35 +2636,45 @@ img {
   padding: 10px;
   width: 100%;
 }
-.aa-login-form label {
+
+.bb-login-form input[type="text"],
+.bb-login-form input[type="password"] {
+  border: 1px solid #ccc;
+  font-size: 16px;
+  height: 40px;
+  margin-bottom: 15px;
+  padding: 10px;
+  width: 100%;
+}
+.bb-login-form label {
   font-weight: normal;
   margin-top: 8px;
 }
-.aa-login-form label span {
+.bb-login-form label span {
   color: red;
 }
-.aa-login-form .rememberme {
+.bb-login-form .rememberme {
   cursor: pointer;
   margin-top: 18px;
 }
-.aa-login-form input[type="checkbox"] {
+.bb-login-form input[type="checkbox"] {
   margin-top: 5px;
 }
-.aa-login-form button {
+.bb-login-form button {
   font-size: 14px;
   padding: 8px 20px;
   margin-right: 5px;
   margin-top: 10px;
-  float: left;
 }
-.aa-login-form .aa-lost-password {
+.bb-login-form .bb-lost-password {
   color: #555;
   margin-top: 10px;
   width: 100%;
 }
-.aa-login-form .aa-lost-password a {
+.bb-login-form .bb-lost-password a {
   color: #555;
 }
+/*---- account form ----*/
 
 /*---- LOGIN MODAL ----*/
 
