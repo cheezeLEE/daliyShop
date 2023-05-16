@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Shop | Home</title>
+
+    <th:block th:replace="fragments/config :: config"></th:block>
+</head>
+<body>
+
+<!-- Start header section -->
+<div th:replace="fragments/header :: header"></div>
+<!-- End header section -->
+
+<!-- menu -->
+<div th:replace="fragments/menu :: menu"></div>
+<!-- /menu -->
+
+<section id="aa-myaccount">
+    <div class="container">
+        <div class="row" style="float: none; margin: auto;">
+            <div class="col-md-5" style="float: none; margin: auto;">
+                <div class="aa-myaccount-area">
+                    <div class="aa-myaccount-register">
+                        <h4>MyInfo</h4>
+                        <form action="" class="aa-login-form">
+                            <label for="userPw">Password<span>*</span></label>
+                            <input type="password" id="userPw" name="userPw" placeholder="비밀번호">
+
+                            <button class="aa-browse-btn" style="width: 100%" th:href="@{/myInfo}">Confirm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+<!-- / footer -->
+
+</body>
+</html>

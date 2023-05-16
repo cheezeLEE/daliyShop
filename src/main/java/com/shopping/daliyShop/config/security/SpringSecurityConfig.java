@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticationEntryPoint(entryPointUnauthorizedHandler) /* 인증 인가 예외처리 핸들러 */
             .and()
                 .formLogin() /* FORM 방식 로그인을 사용할 것임을 알림 */
-//                .loginPage("/loginTest") /* 로그인 페이지가 따로 없고, 모달을 띄우는 방식이므로 사용하지 않음 */
+                .loginPage("/loginTest") /* 로그인 페이지가 따로 없고, 모달을 띄우는 방식이므로 사용하지 않음 */
                 .loginProcessingUrl("/loginProc") /* 로그인 form의 action */
                 .usernameParameter("usrId") /* 로그인 form의 ID의 name */
                 .passwordParameter("usrPw") /* 로그인 form의 PW의 name */
