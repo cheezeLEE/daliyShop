@@ -19,7 +19,7 @@ VALUES('id','pw','name','USER');
 CREATE TABLE USR_INFO(
 	usr_no INT NOT NULL,
 	usr_id VARCHAR(20) NOT NULL,
-	usr_pw VARCHAR(100) NOT NULL,
+	usr_pw VARCHAR(1000) NOT NULL,
 	usr_name VARCHAR(20) NOT NULL,
 	usr_mbl_no VARCHAR(20) NULL,
 	usr_addr VARCHAR(50) NULL,
