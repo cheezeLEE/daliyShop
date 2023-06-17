@@ -46,7 +46,7 @@
                   <li class="hidden-xs"><a th:href="@{/checkout}">구매하기</a></li>
                   <li th:if="${session.login != null}">
                     <span th:text="${session.userId}"></span>님
-                    <a th:href="@{/logout}">로그아웃</a>
+                    <a th:href="'javascript:void(0)'" onclick="logout()">로그아웃</a>
                   </li>
                   <li th:unless="${session.login != null}">
                     <a th:href="@{/loginTest}">로그인</a>
@@ -59,7 +59,22 @@
       </div>
     </div>
     <!-- / header top  -->
-
+<script>
+  function logout(){
+      $.ajax({
+          url: '/logout',
+          type: 'post',
+          success: function(data){
+              if(data == 'success'){
+                  sessionStorage.removeItem('userInfo');
+                  location.href = '/index';
+              }else{
+                  alert('로그아웃 실패')
+              }
+          }
+      })
+  }
+</script>
     <!-- start header bottom  -->
     <div class="aa-header-bottom">
       <div class="container">

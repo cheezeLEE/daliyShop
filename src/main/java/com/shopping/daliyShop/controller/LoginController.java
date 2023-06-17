@@ -67,4 +67,14 @@ public class LoginController {
         return resultMap;
     }
 
+    @PostMapping("/logout")
+    @ResponseBody
+    public String logout(HttpServletRequest request) {
+        System.out.println("LoginController.logout");
+        HttpSession session = request.getSession();
+        session.invalidate();
+
+        return "success";
+    }
+
 }
