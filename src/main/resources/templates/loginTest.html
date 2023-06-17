@@ -49,7 +49,17 @@
 <!-- footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 <!-- / footer -->
-<script>
+
+<script th:inline="javascript">
+  $(function(){
+     var saveId = localStorage.getItem('loginId');
+
+     if(saveId != null && saveId != ''){
+         $("#userId").val(saveId);
+         $("#rememberme").prop('checked');
+     }
+  });
+
   $("#loginBtn").on('click', function(e){
       e.preventDefault();
 
@@ -66,6 +76,11 @@
               if(data.login == 'success'){
                   alert('로그인 성공');
                   sessionStorage.setItem('loginSession', data.userInfo);
+                  if($("#rememberme").is(":checked")){
+                      localStorage.setItem('loginId', $("#userId").val())
+                  } else {
+                      localStorage.removeItem('loginId');
+                  }
                   location.href = '/index';
               } else if(data.login == 'fail'){
                   alert('로그인 실패');
