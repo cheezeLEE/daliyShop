@@ -44,13 +44,13 @@
                   <li class="hidden-xs"><a th:href="@{/wishlist}">찜</a></li>
                   <li class="hidden-xs"><a th:href="@{/cart}">장바구니</a></li>
                   <li class="hidden-xs"><a th:href="@{/checkout}">구매하기</a></li>
-<!--                  <li th:if="${#authorization.getAuthentication() != null and #authorization.expression('isAuthenticated()')}">-->
-<!--                    <span th:text="${#authentication.principal.username}"></span>님-->
-<!--                    <a th:href="@{/logout}">로그아웃</a>-->
-<!--                  </li>-->
-<!--                  <li th:unless="${#authorization.getAuthentication() != null and #authorization.expression('isAuthenticated()')}">-->
-<!--                    <a th:href="@{/loginTest}">로그인</a>-->
-<!--                  </li>-->
+                  <li th:if="${session.login != null}">
+                    <span th:text="${session.userId}"></span>님
+                    <a th:href="@{/logout}">로그아웃</a>
+                  </li>
+                  <li th:unless="${session.login != null}">
+                    <a th:href="@{/loginTest}">로그인</a>
+                  </li>
                 </ul>
               </div>
             </div>

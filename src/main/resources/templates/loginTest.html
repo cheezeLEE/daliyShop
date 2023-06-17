@@ -65,7 +65,7 @@
           success: function(data){
               if(data.login == 'success'){
                   alert('로그인 성공');
-                  localStorage.setItem('loginSession', 'success');
+                  sessionStorage.setItem('loginSession', data.userInfo);
                   location.href = '/index';
               } else if(data.login == 'fail'){
                   alert('로그인 실패');

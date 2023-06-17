@@ -16,6 +16,7 @@ public class LoginService {
         this.loginMapper = loginMapper;
     }
 
+    /* 로그인 */
     public HashMap<String, Object> login(HashMap<String, Object> map){
         System.out.println("LoginService.login");
         return loginMapper.login(map);
