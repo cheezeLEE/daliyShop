@@ -53,7 +53,8 @@
   $("#loginBtn").on('click', function(e){
       e.preventDefault();
 
-      var param = {userId: $('#userId').val(), userPw: $('#userPw').val()};
+      var password = passwordEncoding($('#userPw').val()); /* 패스워드 인코딩 */
+      var param = {userId: $('#userId').val(), userPw: password};
 
       $.ajax({
           url: '/loginProc',
