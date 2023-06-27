@@ -1,23 +1,6 @@
--- 테이블 생성
-CREATE TABLE tbl_test(
-	usr_no INT PRIMARY KEY AUTO_INCREMENT,
-	usr_id VARCHAR(100) NOT NULL,
-	usr_pw VARCHAR(100) NOT NULL,
-	usr_name VARCHAR(50) NOT NULL
-);
-
--- Spring Security를 사용하기 위한 roles 컬럼 추가
-ALTER TABLE tbl_test ADD roles varchar(10);
-
--- 테이블 데이터 추가
-INSERT INTO tbl_test(usr_id, usr_pw, usr_name, roles)
-VALUES('id','pw','name','USER');
-
-
--- 프로젝트 테이블들
 -- 회원 테이블
 CREATE TABLE USR_INFO(
-	usr_no INT NOT NULL,
+	usr_no INT AUTO_INCREMENT NOT NULL,
 	usr_id VARCHAR(20) NOT NULL,
 	usr_pw VARCHAR(1000) NOT NULL,
 	usr_name VARCHAR(20) NOT NULL,
@@ -43,7 +26,7 @@ CREATE TABLE USR_AUTH(
 
 -- 상품 테이블
 CREATE TABLE PRDT_INFO(
-	prdt_no INT NOT NULL,
+	prdt_no INT AUTO_INCREMENT NOT NULL,
 	prdt_name VARCHAR(100) NOT NULL,
 	prdt_cate1 VARCHAR(20) NOT NULL,
 	prdt_cate2 VARCHAR(20) NULL,
@@ -69,7 +52,7 @@ CREATE TABLE PRDT_IMG(
 
 -- 주문 테이블
 CREATE TABLE ORDER_INFO(
-	order_no INT NOT NULL,
+	order_no INT AUTO_INCREMENT NOT NULL,
 	usr_no INT NOT NULL,
 	prdt_no INT NOT NULL,
 	order_addr VARCHAR(50) NULL,
@@ -109,7 +92,7 @@ CREATE TABLE CART_INFO(
 
 -- 일대일문의 테이블
 CREATE TABLE INQUIRY_INFO(
-	inquiry_no INT NOT NULL,
+	inquiry_no INT AUTO_INCREMENT NOT NULL,
 	inquiry_title VARCHAR(100) NOT NULL,
 	inquiry_content TEXT NOT NULL,
 	inquiry_writer VARCHAR(20) NOT NULL,
@@ -132,7 +115,7 @@ CREATE TABLE INQUIRY_IMG(
 
 -- 공지사항 테이블
 CREATE TABLE NOTICE_INFO(
-	notice_no INT NOT NULL,
+	notice_no INT AUTO_INCREMENT NOT NULL,
 	notice_title VARCHAR(100) NOT NULL,
 	notice_content TEXT NOT NULL,
 	notice_writer VARCHAR(20) NOT NULL,
@@ -144,7 +127,7 @@ CREATE TABLE NOTICE_INFO(
 
 -- FAQ 테이블
 CREATE TABLE FAQ_INFO(
-	faq_no INT NOT NULL,
+	faq_no INT AUTO_INCREMENT NOT NULL,
 	faq_title VARCHAR(100) NOT NULL,
 	faq_content TEXT NOT NULL,
 	faq_writer VARCHAR(20) NOT NULL,
@@ -162,4 +145,3 @@ CREATE TABLE COM_CODE(
 	com_value VARCHAR(20) NULL,
 	PRIMARY KEY(com_code)
 );
-
