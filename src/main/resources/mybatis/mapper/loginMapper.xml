@@ -20,4 +20,13 @@
         WHERE usr_id = #{userId}
             AND usr_pw = #{userPw}
     </select>
+
+    <select id="searchId" parameterType="hashmap" resultType="string">
+        SELECT
+            usr_id
+        FROM USR_INFO
+        WHERE usr_name = #{usrName}
+            AND usr_mbl_no = ${usrMblNo}
+            AND usr_birth = ${usrBirth}
+    </select>
 </mapper>

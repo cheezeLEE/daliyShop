@@ -57,3 +57,25 @@ function passwordDecoding(data){
 
     return aes256DecodeData;
 };
+
+function postData(url, data) {
+    // form 엘리먼트 생성
+    var form = document.createElement('form');
+    form.method = 'post';
+    form.action = url;
+
+    // 데이터를 입력할 hidden input 필드 생성
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = data[key];
+            form.appendChild(input);
+        }
+    }
+
+    // form을 문서의 body에 추가하고 전송
+    document.body.appendChild(form);
+    form.submit();
+}

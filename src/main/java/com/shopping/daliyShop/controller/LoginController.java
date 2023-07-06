@@ -9,10 +9,8 @@ import com.shopping.daliyShop.service.LoginService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -77,4 +75,41 @@ public class LoginController {
         return "success";
     }
 
+    @GetMapping("/searchId")
+    public String searchIdForm(HttpServletRequest request, Model model) {
+        System.out.println("LoginController.searchIdForm");
+
+        return "/searchId";
+    }
+
+    @PostMapping("/searchId")
+    @ResponseBody
+    public String searchId(@RequestBody HashMap<String, Object> map) {
+        System.out.println("LoginController.searchId");
+        String searchId = loginService.searchId(map);
+
+        return searchId;
+    }
+
+    @PostMapping("/resultId")
+    public String resultId(@RequestParam HashMap<String, Object> map, Model model){
+        System.out.println("LoginController.resultId");
+        model.addAttribute("resultId", map.get("resultId"));
+        return "/resultId";
+    }
+
+    @GetMapping("/searchPw")
+    public String searchPwForm(HttpServletRequest request, Model model) {
+        System.out.println("LoginController.searchPwForm");
+
+        return "/searchPw";
+    }
+
+    @PostMapping("/searchPw")
+    @ResponseBody
+    public String searchPw(@RequestBody HashMap<String, Object> map) {
+        System.out.println("LoginController.searchPw");
+
+        return "비밀번호";
+    }
 }

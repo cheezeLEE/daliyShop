@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Shop | 아이디 찾기 결과</title>
+
+  <th:block th:replace="fragments/config :: config"></th:block>
+</head>
+<body>
+
+<section id="aa-myaccount">
+  <div class="container">
+    <div class="row" style="float: none; margin: auto;">
+      <div class="col-md-5" style="float: none; margin: auto;">
+        <div class="aa-myaccount-area" style="padding: 20px 0px 20px 0px">
+          <div class="aa-myaccount-register">
+            <h4 style="border-bottom:none">아이디 : <span th:text="${resultId}">usrId</span></h4>
+            <button id="searchIdBtn" type="submit" class="aa-add-to-cart-btn">비밀번호찾기</button>
+            <button id="searchIdBtn" type="submit" class="aa-add-to-cart-btn">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+</script>
+</body>
+</html>

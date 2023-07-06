@@ -9,4 +9,7 @@ public interface LoginMapper {
 
     /* 로그인 */
     HashMap<String, Object> login(HashMap<String, Object> map);
+
+    /* 아이디 찾기 */
+    String searchId(HashMap<String, Object> map);
 }

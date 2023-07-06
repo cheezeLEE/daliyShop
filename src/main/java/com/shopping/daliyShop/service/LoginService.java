@@ -21,4 +21,10 @@ public class LoginService {
         System.out.println("LoginService.login");
         return loginMapper.login(map);
     }
+
+    /* 아이디 찾기 */
+    public String searchId(HashMap<String, Object> map){
+        System.out.println("LoginService.searchId");
+        return loginMapper.searchId(map);
+    }
 }

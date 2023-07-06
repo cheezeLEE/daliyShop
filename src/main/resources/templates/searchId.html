@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daily Shop | 아이디 찾기</title>
+
+  <th:block th:replace="fragments/config :: config"></th:block>
+</head>
+<body>
+
+<section id="aa-myaccount">
+  <div class="container">
+    <div class="row" style="float: none; margin: auto;">
+      <div class="col-md-5" style="float: none; margin: auto;">
+        <div class="aa-myaccount-area" style="padding: 20px 0px 20px 0px">
+          <div class="aa-myaccount-register">
+            <h4>아이디 찾기</h4>
+            <form id="searchIdForm" class="aa-login-form" th:action="@{/searchId}" th:method="post">
+              <label for="usrName">이름<span>*</span></label>
+              <input type="text" id="usrName" name="usrName" placeholder="이름">
+              <label for="usrBirth">생년월일<span>*</span></label>
+              <input type="text" id="usrBirth" name="usrBirth" placeholder="생년월일">
+              <label for="usrMblNo">휴대폰번호<span>*</span></label>
+              <input type="text" id="usrMblNo" name="usrMblNo" placeholder="휴대폰번호">
+              <button id="searchIdBtn" type="submit" class="aa-browse-btn" style="width: 100%">확인</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  $("#searchIdBtn").on('click', function(e){
+      e.preventDefault();
+      var param = {usrName: $('#usrName').val(), usrBirth: $('#usrBirth').val(), usrMblNo: $('#usrMblNo').val()}
+      $.ajax({
+          url: '/searchId',
+          type: 'post',
+          data: JSON.stringify(param),
+          contentType: "application/json",
+          success: function(data){
+            if(data != null){
+                postData('/resultId', {resultId : 'test2'})
+                return;
+            }
+          },
+          error: function(errorThrown) {
+              alert(errorThrown.statusText);
+          }
+
+      })
+  })
+</script>
+</body>
+</html>
