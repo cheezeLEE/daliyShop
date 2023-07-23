@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <th:block th:fragment="header">
   <!-- wpf loader Two -->
   <div id="wpf-loader-two">
@@ -44,12 +44,12 @@
                   <li class="hidden-xs"><a th:href="@{/wishlist}">찜</a></li>
                   <li class="hidden-xs"><a th:href="@{/cart}">장바구니</a></li>
                   <li class="hidden-xs"><a th:href="@{/checkout}">구매하기</a></li>
-                  <li th:if="${session.login != null}">
-                    <span th:text="${session.userId}"></span>님
+                  <li sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name"></span>님
                     <a th:href="'javascript:void(0)'" onclick="logout()">로그아웃</a>
                   </li>
-                  <li th:unless="${session.login != null}">
-                    <a th:href="@{/loginTest}">로그인</a>
+                  <li sec:authorize="isAnonymous()">
+                    <a th:href="@{/login}">로그인</a>
                   </li>
                 </ul>
               </div>
@@ -61,7 +61,8 @@
     <!-- / header top  -->
 <script>
   function logout(){
-      $.ajax({
+      postData("/logout", {});
+/*      $.ajax({
           url: '/logout',
           type: 'post',
           success: function(data){
@@ -72,7 +73,7 @@
                   alert('로그아웃 실패')
               }
           }
-      })
+      })*/
   }
 </script>
     <!-- start header bottom  -->
