@@ -8,7 +8,10 @@ import java.util.HashMap;
 public interface LoginMapper {
 
     /* 로그인 */
-    HashMap<String, Object> login(HashMap<String, Object> map);
+//    HashMap<String, Object> login(HashMap<String, Object> map);
+
+    UserVO getAccount(String userId);
+    ArrayList<AuthVO> getAuth(int userNo);
 
     /* 아이디 찾기 */
     String searchId(HashMap<String, Object> map);

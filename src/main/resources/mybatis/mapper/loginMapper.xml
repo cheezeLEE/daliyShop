@@ -21,6 +21,39 @@
             AND usr_pw = #{userPw}
     </select>
 
+    <!-- 로그인을 시도한 아이디에 해당하는 계정정보 조회 -->
+    <select id="getAccount" parameterType="string" resultType="com.shopping.daliyShop.model.UserVO">
+		SELECT
+            usr_no,
+            usr_id,
+            usr_pw,
+            usr_name,
+            usr_mbl_no,
+            usr_addr,
+            usr_road,
+            usr_postal,
+            usr_addr_detail,
+            usr_birth,
+            usr_reg_date,
+            usr_mod_date,
+            usr_rank,
+            usr_withdraw_yn
+		FROM
+			USR_INFO
+		WHERE
+			usr_id = #{userId}
+	</select>
+
+    <select id="getAuth" parameterType="int" resultType="com.shopping.daliyShop.model.AuthVO">
+		SELECT
+            usr_no,
+            usr_auth
+		FROM
+			USR_AUTH
+		WHERE
+			usr_no = #{usrNo}
+	</select>
+
     <select id="searchId" parameterType="hashmap" resultType="string">
         SELECT
             usr_id

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 @Service
-public class LoginService {
+public class LoginService implements UserDetailsService {
 
     private final LoginMapper loginMapper;
 
@@ -17,9 +17,20 @@ public class LoginService {
     }
 
     /* 로그인 */
-    public HashMap<String, Object> login(HashMap<String, Object> map){
-        System.out.println("LoginService.login");
-        return loginMapper.login(map);
+//    public HashMap<String, Object> login(HashMap<String, Object> map){
+//        System.out.println("LoginService.login");
+//        return loginMapper.login(map);
+//    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        UserVO user = loginMapper.getAccount(userId);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        user.setAuthList(loginMapper.getAuth(user.getUsrNo()));
+
+        return user;
     }
 
     /* 아이디 찾기 */
