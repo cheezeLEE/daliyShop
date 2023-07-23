@@ -27,4 +27,10 @@ public class LoginService {
         System.out.println("LoginService.searchId");
         return loginMapper.searchId(map);
     }
+
+    /* 비밀번호 재설정 */
+    public int searchPw(HashMap<String, Object> map){
+        System.out.println("LoginService.searchPw");
+        return loginMapper.searchPw(map);
+    }
 }

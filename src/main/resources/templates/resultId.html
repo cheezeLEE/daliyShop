@@ -17,8 +17,8 @@
         <div class="aa-myaccount-area" style="padding: 20px 0px 20px 0px">
           <div class="aa-myaccount-register">
             <h4 style="border-bottom:none">아이디 : <span th:text="${resultId}">usrId</span></h4>
-            <button id="searchIdBtn" type="submit" class="aa-add-to-cart-btn">비밀번호찾기</button>
-            <button id="searchIdBtn" type="submit" class="aa-add-to-cart-btn">닫기</button>
+            <button id="searchPwBtn" type="button" onclick="location.href='/searchPw'" class="aa-add-to-cart-btn">비밀번호찾기</button>
+            <button id="close" type="button" onclick="window.close()" class="aa-add-to-cart-btn">닫기</button>
           </div>
         </div>
       </div>
@@ -26,6 +26,5 @@
   </div>
   </div>
 </section>
-</script>
 </body>
 </html>

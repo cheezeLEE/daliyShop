@@ -35,6 +35,27 @@
   </div>
   </div>
 </section>
+<script>
+    $("#searchPwBtn").on('click', function(e){
+        e.preventDefault();
+        var param = {usrId: $('#usrId').val(), usrName: $('#usrName').val(), usrBirth: $('#usrBirth').val(), usrMblNo: $('#usrMblNo').val()}
+        $.ajax({
+            url: '/searchPw',
+            type: 'post',
+            data: JSON.stringify(param),
+            contentType: "application/json",
+            success: function(data){
+                if(data != null){
+                    postData('/resultPw', {resultId : param.usrId})
+                    return;
+                }
+            },
+            error: function(errorThrown) {
+                alert(errorThrown.statusText);
+            }
 
+        })
+    })
+</script>
 </body>
 </html>

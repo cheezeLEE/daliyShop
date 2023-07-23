@@ -12,4 +12,7 @@ public interface LoginMapper {
 
     /* 아이디 찾기 */
     String searchId(HashMap<String, Object> map);
+
+    /* 비밀번호 재설정 */
+    int searchPw(HashMap<String, Object> map);
 }

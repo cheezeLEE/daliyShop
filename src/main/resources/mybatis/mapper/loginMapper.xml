@@ -26,7 +26,17 @@
             usr_id
         FROM USR_INFO
         WHERE usr_name = #{usrName}
-            AND usr_mbl_no = ${usrMblNo}
-            AND usr_birth = ${usrBirth}
+            AND usr_mbl_no = #{usrMblNo}
+            AND usr_birth = #{usrBirth}
+    </select>
+
+    <select id="searchPw" parameterType="hashmap" resultType="int">
+        SELECT
+            COUNT(1)
+        FROM USR_INFO
+        WHERE usr_id = #{usrId}
+            AND usr_name = #{usrName}
+            AND usr_mbl_no = #{usrMblNo}
+            AND usr_birth = #{usrBirth}
     </select>
 </mapper>
