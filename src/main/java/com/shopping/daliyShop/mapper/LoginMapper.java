@@ -1,7 +1,10 @@
 package com.shopping.daliyShop.mapper;
 
+import com.shopping.daliyShop.model.AuthVO;
+import com.shopping.daliyShop.model.UserVO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @Mapper
@@ -18,4 +21,7 @@ public interface LoginMapper {
 
     /* 비밀번호 재설정 */
     int searchPw(HashMap<String, Object> map);
+
+    void join(UserVO userVO);
+    void insertAuth(int userNo);
 }

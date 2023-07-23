@@ -72,4 +72,22 @@
             AND usr_mbl_no = #{usrMblNo}
             AND usr_birth = #{usrBirth}
     </select>
+
+    <!-- 회원가입 -->
+    <insert id="join" parameterType="com.shopping.daliyShop.model.UserVO">
+		INSERT INTO
+			USR_INFO(usr_id, usr_pw, usr_name)
+		VALUES
+			(#{usrId}, #{usrPw}, #{usrName})
+        <selectKey resultType="int" keyProperty="usrNo" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertAuth" parameterType="int">
+		INSERT INTO
+			USR_AUTH(usr_no, usr_auth)
+		VALUES
+			(#{usrNo}, 'ROLE_USER')
+	</insert>
 </mapper>

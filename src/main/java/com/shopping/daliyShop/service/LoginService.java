@@ -1,7 +1,11 @@
 package com.shopping.daliyShop.service;
 
 import com.shopping.daliyShop.mapper.LoginMapper;
+import com.shopping.daliyShop.model.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -44,4 +48,11 @@ public class LoginService implements UserDetailsService {
         System.out.println("LoginService.searchPw");
         return loginMapper.searchPw(map);
     }
+
+    public void join(UserVO userVO) {
+        System.out.println("LoginService.join");
+        loginMapper.join(userVO);
+        loginMapper.insertAuth(userVO.getUsrNo());
+    }
+
 }
