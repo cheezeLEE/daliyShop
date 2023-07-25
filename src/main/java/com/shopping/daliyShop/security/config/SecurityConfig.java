@@ -66,8 +66,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .failureUrl("/access_denied")	// login이 실패하면 이동하는 경로
                 .usernameParameter("usrId")
                 .passwordParameter("usrPw")
-//		 		.successHandler(new MyLoginSuccessHandler)	// 로그인 성공후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
-//		 		.failurHandler(new MyLoginFailHandler)	// 로그인 실패후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
+		 		.successHandler(new AuthenticationSuccessHandler(){ // 로그인 성공후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                        System.out.println("authentication : " + authentication.getName());
+                        response.sendRedirect("/");
+                    }
+                })
+		 		.failureHandler(new AuthenticationFailureHandler() { // 로그인 실패후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
+                    @Override
+                    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+                        System.out.println("exception : " + exception.getMessage());
+                        response.sendRedirect("/login");
+                    }
+                })
                 .and()
                 .logout()	// Logout 관련 설정을 진행할 수 있도록 돕는 LogoutConfigurer<> 클래스를 반환함
                 .logoutUrl("/logout")	// loginProcessingUrl()과 비슷한 기능으로, Client에서 SpringSecurity에게 logout을 요청하기 위한 url을 설정하는 메소드
