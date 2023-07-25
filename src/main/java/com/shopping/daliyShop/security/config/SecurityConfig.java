@@ -2,6 +2,7 @@ package com.shopping.daliyShop.security.config;
 
 import com.shopping.daliyShop.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +20,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
     EnableWebSecurity : SpringSecurityFilterChain이 자동으로 포함됨 / @Configuration이 포함되어 있는 어노테이션
@@ -27,6 +30,7 @@ import java.io.IOException;
 */
 @EnableWebSecurity
 @RequiredArgsConstructor
+@Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final LoginService loginService;
 
@@ -55,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()	// 시큐리티 처리에 HttpServletRequest를 이용함
-                .antMatchers("/login", "/join", "/").permitAll()	// antMatchers : 특정한 경로를 지정, permitAll() : 모든 사용자가 접근할 수 있음
+                .antMatchers("/login", "/join", "/", "/account").permitAll()	// antMatchers : 특정한 경로를 지정, permitAll() : 모든 사용자가 접근할 수 있음
 //                .antMatchers("/main").hasAuthority("ROLE_USER")	// hasRole() : 시스템상에서 특정 권한을 가진 사람만이 접근할 수 있음 (hasRole은 검색시 자동으로 ROLE_을 붙임, hasAuthority는 ROLE_을 붙이지 않음
                 .anyRequest().authenticated()	// 나머지 리소스들은 무조건 인증을 완료해야 접근이 가능
                 .and()
@@ -69,8 +73,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 		.successHandler(new AuthenticationSuccessHandler(){ // 로그인 성공후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
                     @Override
                     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                        System.out.println("authentication : " + authentication.getName());
-                        response.sendRedirect("/");
+                        log.info("Login Success");
+
+                        List<String> roleNames = new ArrayList<>();
+
+                        /* 권한 목록 가져오기 */
+                        authentication.getAuthorities().forEach(authority -> {
+                            roleNames.add(authority.getAuthority());
+                        });
+
+                        log.info("ROLE NAMES: " + roleNames);
+
+                        /* Admin 권한을 가질 경우 Admin 페이지로 이동 */
+                        if(roleNames.contains("ROLE_ADMIN")) {
+                            response.sendRedirect("/admin");
+                            return;
+                        } else {
+                            response.sendRedirect("/");
+                            return;
+                        }
                     }
                 })
 		 		.failureHandler(new AuthenticationFailureHandler() { // 로그인 실패후 항상 실행하기를 원하는 로직을 추가하기 위해 사용
