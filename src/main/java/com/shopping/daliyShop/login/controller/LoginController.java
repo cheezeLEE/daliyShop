@@ -74,7 +74,7 @@ public class LoginController {
 //        return "success";
 //    }
 
-    @GetMapping("/join")
+    @GetMapping("/join2")
     public String join(Model model) {
 
         return "join";
