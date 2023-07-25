@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shopping.daliyShop.mapper.LoginMapper">
+<mapper namespace="com.shopping.daliyShop.login.mapper.LoginMapper">
     <select id="login" parameterType="hashmap" resultType="hashmap">
         SELECT
             usr_no,
@@ -22,7 +22,7 @@
     </select>
 
     <!-- 로그인을 시도한 아이디에 해당하는 계정정보 조회 -->
-    <select id="getAccount" parameterType="string" resultType="com.shopping.daliyShop.model.UserVO">
+    <select id="getAccount" parameterType="string" resultType="com.shopping.daliyShop.user.model.UserVO">
 		SELECT
             usr_no,
             usr_id,
@@ -44,7 +44,7 @@
 			usr_id = #{userId}
 	</select>
 
-    <select id="getAuth" parameterType="int" resultType="com.shopping.daliyShop.model.AuthVO">
+    <select id="getAuth" parameterType="int" resultType="com.shopping.daliyShop.user.model.AuthVO">
 		SELECT
             usr_no,
             usr_auth
@@ -74,7 +74,7 @@
     </select>
 
     <!-- 회원가입 -->
-    <insert id="join" parameterType="com.shopping.daliyShop.model.UserVO">
+    <insert id="join" parameterType="com.shopping.daliyShop.user.model.UserVO">
 		INSERT INTO
 			USR_INFO(usr_id, usr_pw, usr_name)
 		VALUES

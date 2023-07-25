@@ -54,8 +54,11 @@
                     <label for="usrName">이름<span>*</span></label>
                     <input type="text" placeholder="이름" id="usrName" name="usrName">
                     <label for="usrMblNo">핸드폰 번호<span>*</span></label>
-                     <button type="button" class="aa-browse-btn pull-right" style="margin-right: 0px;">인증</button>
+                     <button type="button" class="aa-browse-btn pull-right" id="sendSmssendSms" style="margin-right: 0px;">인증번호 발송</button>
                      <input type="text" placeholder="핸드폰 번호" id="usrMblNo" name="usrMblNo">
+                     <label for="val">인증번호<span>*</span></label>
+                     <button type="button" class="aa-browse-btn pull-right" id="chkVal" style="margin-right: 0px;">인증</button>
+                     <input type="text" placeholder="인증번호" id="val" name="val">
                      <label for="usrAddr">우편번호<span>*</span></label>
                      <button type="button" onclick="daumPostcode()" class="aa-browse-btn pull-right" style="margin-right: 0px;">찾기</button>
                     <input type="text" placeholder="우편번호" id="usrAddr" name="usrAddr" readonly>
@@ -66,7 +69,7 @@
                      <label for="usrAddrDetail">상세주소<span>*</span></label>
                     <input type="text" placeholder="상세 주소" id="usrAddrDetail" name="usrAddrDetail">
                      <label for="usrBirth">생년월일<span>*</span></label>
-                    <input type="text" placeholder="생년월일" id="usrBirth" name="usrBirth">
+                    <input type="date" placeholder="생년월일" id="usrBirth" name="usrBirth">
                     <button id="accountBtn" type="submit" class="aa-browse-btn" style="width: 100%">등록</button>
                   </form>
                 </div>
@@ -87,10 +90,37 @@
         $(document).ready(function(){
 
             var dupChk = false;
+            var mblChk = false;
 
+            var now_utc = Date.now()
+            var timeOff = new Date().getTimezoneOffset()*60000;
+            var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+            document.getElementById("#usrBirth").setAttribute("max", today);
 
+            $('#usrId').on('input', function(){
+                var dupChk = false;
+            });
+
+            $('#usrMblNo').blur(function () {
+                if(!isPhoneNumber($('#usrMblNo').val())){
+                    alert("ex)010-0000-0000 형태로 입력.");
+                    return;
+                }
+            })
             $('#accountBtn').click(function(e){
                 e.preventDefault();
+                if(!isId($('#userId').val())){
+                    alert("영문, 영문+ 숫자로 입력");
+                    $('#usrId').focus();
+                    return;
+                }
+
+                if(!isPassword($('#usrPw').val())){
+                    alert("8 ~ 16자 영문, 숫자로 입력");
+                    $('#usrPw').focus();
+                    return;
+                }
+
                 if($.trim($('#usrId').val()) == ''){
                     alert("아이디 입력.");
                     $('#usrId').focus();
@@ -132,7 +162,10 @@
                     dataType : "JSON",
                     contentType: 'application/json',
                     success: function(data){
-                        location.href = "/login" ;
+                            window.location.href = "loginTest" ;
+                    },
+                    error: function(request,status,error){
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                     }
                 });
             });
@@ -203,6 +236,55 @@
                     document.getElementById("usrAddrDetail").focus();
                 }
             }).open();
+        }
+
+        $('#sendSms').click(function() {
+
+            var to = $('#usrMblNo').val();
+
+            $.ajax ({
+                url: 'sendSms',
+                type: 'POST',
+                data: {
+                    "to" : to
+                },
+                success: function(data) {
+                    var checkNum = data;
+                    alert('checkNum:'+ checkNum);
+
+                    $('#chkVal').click(function() {
+                        const userNum = $('#val').val();
+
+                        if(checkNum === userNum) {
+                            mblChk = true;
+                            alert('인증 성공하였습니다.');
+                        }
+                        else {
+                            alert('인증 실패하였습니다. 다시 입력해주세요.');
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+        function isId(asValue) {
+            var regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+
+            return regExp.test(asValue);
+        }
+
+        function isPhoneNumber(asValue) {
+            var regExp = /^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/;
+
+            return regExp.test(asValue);
+        }
+
+        function isPassword(asValue) {
+            var regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,16}$/;
+
+            return regExp.test(asValue);
         }
     </script>
 </body>

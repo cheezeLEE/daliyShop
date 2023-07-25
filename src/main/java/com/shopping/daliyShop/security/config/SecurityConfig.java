@@ -1,6 +1,6 @@
 package com.shopping.daliyShop.security.config;
 
-import com.shopping.daliyShop.service.LoginService;
+import com.shopping.daliyShop.login.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;

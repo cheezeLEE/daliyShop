@@ -1,8 +1,8 @@
 package com.shopping.daliyShop.database;
 
 import com.shopping.daliyShop.config.SHA512;
-import com.shopping.daliyShop.model.TestModel;
-import com.shopping.daliyShop.service.TestService;
+import com.shopping.daliyShop.test.model.TestModel;
+import com.shopping.daliyShop.test.service.TestService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
