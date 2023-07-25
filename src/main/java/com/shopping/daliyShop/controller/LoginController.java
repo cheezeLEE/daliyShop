@@ -26,13 +26,13 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    /* login, logout은 spring security 기본기능 사용 */
-//    @GetMapping("/login")
-//    public String loginForm() {
-//        System.out.println("LoginController.loginForm");
-//        return "loginTest";
-//    }
-//
+    /* Custom Login */
+    @GetMapping("/login")
+    public String loginForm() {
+        System.out.println("LoginController.loginForm");
+        return "loginTest";
+    }
+
 //    @PostMapping("/loginProc")
 //    @ResponseBody
 //    public Map<String, Object> login(@RequestBody HashMap<String, Object> map, HttpServletRequest request) throws JsonProcessingException {

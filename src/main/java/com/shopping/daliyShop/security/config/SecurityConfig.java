@@ -9,7 +9,16 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /*
     EnableWebSecurity : SpringSecurityFilterChain이 자동으로 포함됨 / @Configuration이 포함되어 있는 어노테이션
@@ -26,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean //실제 인증을 한 이후에 인증이 완료되면 Authentication객체를 반환을 위한 bean등록jo
+    @Bean //실제 인증을 한 이후에 인증이 완료되면 Authentication객체를 반환을 위한 bean등록
     public DaoAuthenticationProvider authenticationProvider(LoginService loginService) {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(loginService);
@@ -51,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()	// 나머지 리소스들은 무조건 인증을 완료해야 접근이 가능
                 .and()
                 .formLogin()	// form 태그 기반의 로그인을 지원하겠다는 설정
-//                .loginPage("/login")	// login 페이지 지정, 없을 시 시큐리티의 기본 로그인 폼이 지정됨
+                .loginPage("/login")	// login 페이지 지정, 없을 시 시큐리티의 기본 로그인 폼이 지정됨
 //                .loginProcessingUrl("/login")	// login이 수행되는 경로 (from태그의 action값)
                 .defaultSuccessUrl("/")		// login이 성공하면 이동하는 경로
 //                .failureUrl("/access_denied")	// login이 실패하면 이동하는 경로

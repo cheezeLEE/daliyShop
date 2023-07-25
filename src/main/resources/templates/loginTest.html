@@ -25,11 +25,11 @@
         <div class="aa-myaccount-area">
           <div class="aa-myaccount-register">
             <h4>로그인</h4>
-            <form id="login" class="aa-login-form" th:action="@{/loginProc}" th:method="post">
+            <form id="login" class="aa-login-form" th:action="@{/login}" th:method="post">
               <label for="userId">아이디<span>*</span></label>
-              <input type="text" id="userId" name="userId" placeholder="아이디">
+              <input type="text" id="userId" name="usrId" placeholder="아이디">
               <label for="userPw">비밀번호<span>*</span></label>
-              <input type="password" id="userPw" name="userPw" placeholder="비밀번호">
+              <input type="password" id="userPw" name="usrPw" placeholder="비밀번호">
 
               <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> 아이디 기억하기 </label>
               <button id="loginBtn" type="submit" class="aa-browse-btn" style="width: 100%">로그인</button>
@@ -51,54 +51,54 @@
 <!-- / footer -->
 
 <script th:inline="javascript">
-  $(function(){
-     var saveId = localStorage.getItem('loginId');
-
-     if(saveId != null && saveId != ''){
-         $("#userId").val(saveId);
-         $("#rememberme").prop('checked', true);
-     }
-  });
-
-  $("#searchId").on('click', function(){
-      window.open("/searchId", '아이디 찾기', 'width=600, height=500');
-  });
-
-  $("#searchPw").on('click', function(){
-      window.open("/searchPw", '비밀번호 재설정', 'width=600, height=500');
-  })
-
-  $("#loginBtn").on('click', function(e){
-      e.preventDefault();
-
-      var password = passwordEncoding($('#userPw').val()); /* 패스워드 인코딩 */
-      var param = {userId: $('#userId').val(), userPw: password};
-
-      $.ajax({
-          url: '/loginProc',
-          type: 'post',
-          data: JSON.stringify(param),
-          dataType: 'json',
-          contentType: "application/json",
-          success: function(data){
-              if(data.login == 'success'){
-                  alert('로그인 성공');
-                  sessionStorage.setItem('userInfo', data.userInfo);
-                  if($("#rememberme").is(":checked")){
-                      localStorage.setItem('loginId', $("#userId").val())
-                  } else {
-                      localStorage.removeItem('loginId');
-                  }
-                  location.href = '/index';
-              } else if(data.login == 'fail'){
-                  alert('로그인 실패');
-              }
-          },
-          error: function(errorThrown) {
-              alert(errorThrown.statusText);
-          }
-      });
-  })
+  // $(function(){
+  //    var saveId = localStorage.getItem('loginId');
+  //
+  //    if(saveId != null && saveId != ''){
+  //        $("#userId").val(saveId);
+  //        $("#rememberme").prop('checked', true);
+  //    }
+  // });
+  //
+  // $("#searchId").on('click', function(){
+  //     window.open("/searchId", '아이디 찾기', 'width=600, height=500');
+  // });
+  //
+  // $("#searchPw").on('click', function(){
+  //     window.open("/searchPw", '비밀번호 재설정', 'width=600, height=500');
+  // })
+  //
+  // $("#loginBtn").on('click', function(e){
+  //     e.preventDefault();
+  //
+  //     var password = passwordEncoding($('#userPw').val()); /* 패스워드 인코딩 */
+  //     var param = {userId: $('#userId').val(), userPw: password};
+  //
+  //     $.ajax({
+  //         url: '/loginProc',
+  //         type: 'post',
+  //         data: JSON.stringify(param),
+  //         dataType: 'json',
+  //         contentType: "application/json",
+  //         success: function(data){
+  //             if(data.login == 'success'){
+  //                 alert('로그인 성공');
+  //                 sessionStorage.setItem('userInfo', data.userInfo);
+  //                 if($("#rememberme").is(":checked")){
+  //                     localStorage.setItem('loginId', $("#userId").val())
+  //                 } else {
+  //                     localStorage.removeItem('loginId');
+  //                 }
+  //                 location.href = '/index';
+  //             } else if(data.login == 'fail'){
+  //                 alert('로그인 실패');
+  //             }
+  //         },
+  //         error: function(errorThrown) {
+  //             alert(errorThrown.statusText);
+  //         }
+  //     });
+  // })
 </script>
 </body>
 </html>
